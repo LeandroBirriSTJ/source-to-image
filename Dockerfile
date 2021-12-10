@@ -19,8 +19,8 @@ RUN make && cp _output/local/bin/linux/$(go env GOARCH)/s2i _output/local/go/bin
 FROM registry.redhat.io/ubi8/ubi
 
 COPY --from=builder /tmp/source-to-image/_output/local/go/bin/s2i  /usr/local/bin/s2i
-RUN yum install bzip2
+RUN yum install -y bzip2
 
-#USER 1001
+USER 1001
 
 ENTRYPOINT [ "/usr/local/bin/s2i" ]
